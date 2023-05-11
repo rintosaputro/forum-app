@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  HiOutlineThumbUp, HiOutlineThumbDown, HiThumbUp, HiThumbDown,
-} from 'react-icons/hi';
+import { HiOutlineThumbDown } from 'react-icons/hi';
 
 function ThumbsDown() {
   return (

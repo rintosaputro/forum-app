@@ -1,8 +1,4 @@
 import React from 'react';
-// import HiOutlineHandThumbUp from 'react-icons/hi';
-import {
-  HiOutlineThumbUp, HiOutlineThumbDown, HiThumbUp, HiThumbDown,
-} from 'react-icons/hi';
 import Badge from './Badge';
 import ThumbsDown from './ThumbsDown';
 import ThumbsUp from './ThumbsUp';
