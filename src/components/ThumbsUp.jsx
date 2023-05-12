@@ -1,13 +1,19 @@
 import React from 'react';
-import { HiOutlineThumbUp } from 'react-icons/hi';
+import { HiOutlineThumbUp, HiThumbUp } from 'react-icons/hi';
+import PropTypes from 'prop-types';
 
-function ThumbsUp() {
+function ThumbsUp({ totalThumbs = 0, isActive }) {
   return (
-    <div>
-      <HiOutlineThumbUp />
-      <span>1</span>
-    </div>
+    <button className="thumbs" title="like">
+      {isActive ? <HiThumbUp color="#00c1c4" size="17px" /> : <HiOutlineThumbUp size="17px" />}
+      <span className="total-thumbs">{totalThumbs}</span>
+    </button>
   );
 }
+
+ThumbsUp.propTypes = {
+  totalThumbs: PropTypes.number,
+  isActive: PropTypes.bool,
+};
 
 export default ThumbsUp;

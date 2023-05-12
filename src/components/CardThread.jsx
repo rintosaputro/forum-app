@@ -18,9 +18,9 @@ function CardThread() {
         article description di sini ya gess
       </p>
       <Badge>Category</Badge>
-      <div>
-        <ThumbsUp />
-        <ThumbsDown />
+      <div className="thumbs-container">
+        <ThumbsUp totalThumbs={1} isActive />
+        <ThumbsDown isActive />
       </div>
     </article>
   );
