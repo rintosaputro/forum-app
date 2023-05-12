@@ -1,6 +1,6 @@
 import React from 'react';
 import ButtonCategory from '../components/ButtonCategory';
-import CardThread from '../components/CardThread';
+import ThreadList from '../components/ThreadList';
 
 function HomePage() {
   return (
@@ -18,9 +18,7 @@ function HomePage() {
           <div>
             <ButtonCategory>Makan</ButtonCategory>
           </div>
-          <div>
-            <CardThread />
-          </div>
+          <ThreadList />
         </div>
       </div>
     </section>
