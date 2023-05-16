@@ -8,7 +8,10 @@ function RegisterPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onRegister = ({ name, email, password }) => {
+  const onRegister = ({
+    event, name, email, password,
+  }) => {
+    event.preventDefault();
     dispatch(asyncRegisterUser({ name, email, password }));
     navigate('/');
   };

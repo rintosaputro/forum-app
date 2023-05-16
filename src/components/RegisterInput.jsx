@@ -14,7 +14,14 @@ function RegisterInput({ onRegister }) {
       <TextField type="text" value={name} onChange={handleName} placeholder="Name" />
       <TextField type="email" value={email} onChange={handleEmail} placeholder="Email" />
       <TextField type="password" value={password} onChange={handlePassword} placeholder="Password" />
-      <ButtonBase type="submit" onClick={() => onRegister({ name, email, password })}>Register</ButtonBase>
+      <ButtonBase
+        type="submit"
+        onClick={(event) => onRegister({
+          event, name, email, password,
+        })}
+      >
+        Register
+      </ButtonBase>
     </form>
   );
 }
