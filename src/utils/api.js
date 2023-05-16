@@ -54,6 +54,13 @@ const api = (() => {
     const { data: { token } } = responseJson;
     return token;
   };
+
+  return {
+    putAccessToken,
+    getAccessToken,
+    register,
+    login,
+  };
 })();
 
 export default api;
