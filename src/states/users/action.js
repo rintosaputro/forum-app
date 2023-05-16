@@ -18,5 +18,7 @@ const asyncRegisterUser = ({ name, email, password }) => async (dispatch) => {
 };
 
 export {
-  ActionType, receiveUsers, asyncRegisterUser,
+  ActionType,
+  receiveUsers,
+  asyncRegisterUser,
 };

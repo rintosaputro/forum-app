@@ -25,6 +25,7 @@ const api = (() => {
     });
 
     const responseJson = await response.json();
+
     const { status, message } = responseJson;
 
     if (status !== 'success') {
@@ -45,6 +46,7 @@ const api = (() => {
     });
 
     const responseJson = await response.json();
+
     const { status, message } = responseJson;
 
     if (status !== 'success') {
@@ -55,11 +57,27 @@ const api = (() => {
     return token;
   };
 
+  const getOwnProfile = async () => {
+    const response = await _fetchWithAuth(`${BASE_URL}/users/me`);
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { user } } = responseJson;
+    return user;
+  };
+
   return {
     putAccessToken,
     getAccessToken,
     register,
     login,
+    getOwnProfile,
   };
 })();
 
