@@ -3,6 +3,7 @@ import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { BsBarChartLineFill, BsBarChartLine } from 'react-icons/bs';
 import { MdOutlineLogout } from 'react-icons/md';
 import { useLocation, useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const listFooter = [
   {
@@ -25,13 +26,13 @@ const listFooter = [
   },
 ];
 
-function Footer() {
+function Footer({ onSignOut }) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
   const handleClickMenu = (route) => {
     if (route === '/logout') {
-      alert('logout');
+      onSignOut();
     } else {
       navigate(route);
     }
@@ -57,5 +58,9 @@ function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  onSignOut: PropTypes.func.isRequired,
+};
 
 export default Footer;
