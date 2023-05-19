@@ -1,6 +1,6 @@
 import { ActionType } from './action';
 
-const userReducer = (authUser = null, action = {}) => {
+const authUserReducer = (authUser = null, action = {}) => {
   switch (action.type) {
     case ActionType.SET_AUTH_USER:
       return action.payload.authUser;
@@ -11,4 +11,4 @@ const userReducer = (authUser = null, action = {}) => {
   }
 };
 
-export default userReducer;
+export default authUserReducer;

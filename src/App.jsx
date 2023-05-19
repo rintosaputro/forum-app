@@ -1,20 +1,31 @@
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import { asyncUnsetAuthUser } from './states/authUser/action';
+import { asyncPreloadProcess } from './states/preload/action';
 
 function App() {
-  const { authUser } = useSelector((state) => state);
+  const { authUser = null, isPreload = false } = useSelector((state) => state);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPreloadProcess());
+  }, [dispatch]);
 
   const onSignout = () => {
     dispatch(asyncUnsetAuthUser());
   };
 
+  if (isPreload) {
+    return (
+      <div>Loading...</div>
+    );
+  }
   if (!authUser) {
     return (
       <div className="App">
@@ -22,7 +33,6 @@ function App() {
           <Route path="*" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
-        <Footer onSignOut={onSignout} />
       </div>
     );
   }

@@ -36,6 +36,8 @@ const asyncUnsetAuthUser = () => (dispatch) => {
 
 export {
   ActionType,
+  setAuthUserActionCreator,
+  unsetAuthUserActionCreator,
   asyncSetAuthUser,
   asyncUnsetAuthUser,
 };

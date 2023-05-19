@@ -10,7 +10,7 @@ const listFooter = [
     active: <AiFillHome size="20px" color="#00c1c4" />,
     nonActive: <AiOutlineHome size="20px" color="#fff" />,
     page: 'Home',
-    route: '/home',
+    route: '/',
   },
   {
     active: <BsBarChartLineFill size="20px" color="#00c1c4" />,
