@@ -35,7 +35,6 @@ button {
 .home-page {
     /* background: url(https://images.pexels.com/photos/1776267/pexels-photo-1776267.jpeg?auto=compress&cs=tinysrgb&w=1600); */
     background: url(https://images.pexels.com/photos/3876407/pexels-photo-3876407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
-    padding-bottom: 50px;
 }
 
 .login-page, .register-page, .home-page {
@@ -164,6 +163,7 @@ button {
     flex-direction: column;
     gap: 15px;
     margin: 40px 0;
+    padding-bottom: 50px;
 }
 .card-thread {
     /* background: rgba(136, 165, 183, 0.5); */
@@ -182,6 +182,11 @@ button {
     gap: 8px;
     align-items: flex-end;
 }
+.avatar-card-thread {
+    width: 20px;
+    height: auto;
+    border-radius: 20px;
+}
 .title {
     padding-top: 5px;
 }
@@ -192,6 +197,15 @@ button {
 }
 .time-thread {
     font-size: 10px;
+}
+.description-thread {
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .thumbs-container {
     display: flex;
