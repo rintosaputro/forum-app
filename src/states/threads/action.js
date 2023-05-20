@@ -59,7 +59,7 @@ const asyncToggleUnLikeThread = (threadId) => async (dispatch, getState) => {
   const { authUser } = getState();
   dispatch(toggleUnLikeThreadActionCreator({ threadId, userId: authUser.id }));
   try {
-    await api.toggleLikeThread(threadId);
+    await api.toggleUnLikeThread(threadId);
   } catch (err) {
     alert(err.message);
     dispatch(toggleUnLikeThreadActionCreator({ threadId, userId: authUser.id }));

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ButtonCategory from '../components/ButtonCategory';
 import ThreadList from '../components/ThreadList';
 import { asyncPopulateThreadsAndUser } from '../states/shared/action';
-import { asyncToggleLikeThread, asyncToggleNeutralThread } from '../states/threads/action';
+import { asyncToggleLikeThread, asyncToggleNeutralThread, asyncToggleUnLikeThread } from '../states/threads/action';
 
 function HomePage() {
   const { threads } = useSelector((state) => state);
@@ -21,8 +21,11 @@ function HomePage() {
     return dispatch(asyncToggleLikeThread(id));
   };
 
-  const onUnLike = (id) => {
-    alert(id);
+  const onUnLike = ({ id, isActive }) => {
+    if (isActive) {
+      return dispatch(asyncToggleNeutralThread(id));
+    }
+    return dispatch(asyncToggleUnLikeThread(id));
   };
 
   return (

@@ -32,7 +32,8 @@ function CardThread({
 
   const handleUnLike = (event) => {
     event.stopPropagation();
-    onUnLike(id);
+    const isActive = downVotesBy.includes(authUser.id);
+    onUnLike({ id, isActive });
   };
 
   return (
@@ -57,7 +58,11 @@ function CardThread({
           isActive={upVotesBy.includes(authUser.id)}
           onLike={handleLike}
         />
-        <ThumbsDown totalThumbs={downVotesBy.length} isActive onUnLike={handleUnLike} />
+        <ThumbsDown
+          totalThumbs={downVotesBy.length}
+          isActive={downVotesBy.includes(authUser.id)}
+          onUnLike={handleUnLike}
+        />
       </div>
     </div>
   );
