@@ -10,7 +10,7 @@ function ThreadList({ threads, onLike, onUnLike }) {
           key={thread.id}
           {...thread}
           onLike={onLike}
-          onUnlike={onUnLike}
+          onUnLike={onUnLike}
         />
       ))}
     </div>
