@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
+import { useSelector } from 'react-redux';
 import Badge from './Badge';
 import ThumbsDown from './ThumbsDown';
 import ThumbsUp from './ThumbsUp';
@@ -11,6 +12,8 @@ function CardThread({
   id, title, body, category, createdAt, ownerId, ownerAvatar, ownerName, upVotesBy,
   downVotesBy, totalComments, onLike, onUnLike,
 }) {
+  const { authUser } = useSelector((state) => state);
+
   const navigate = useNavigate();
 
   const onThread = () => navigate(`/thread/${id}`);
@@ -23,7 +26,8 @@ function CardThread({
 
   const handleLike = (event) => {
     event.stopPropagation();
-    onLike(id);
+    const isActive = upVotesBy.includes(authUser.id);
+    onLike({ id, isActive });
   };
 
   const handleUnLike = (event) => {
@@ -48,7 +52,11 @@ function CardThread({
         {`#${category}`}
       </Badge>
       <div className="thumbs-container">
-        <ThumbsUp totalThumbs={upVotesBy.length} isActive onLike={handleLike} />
+        <ThumbsUp
+          totalThumbs={upVotesBy.length}
+          isActive={upVotesBy.includes(authUser.id)}
+          onLike={handleLike}
+        />
         <ThumbsDown totalThumbs={downVotesBy.length} isActive onUnLike={handleUnLike} />
       </div>
     </div>
