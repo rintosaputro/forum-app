@@ -24,7 +24,7 @@ function HomePage() {
   return (
     <section className="home-page">
       <div className="home-overlay">
-        <div>
+        <div className={threads.length === 0 ? 'empty-content' : ''}>
           <header className="home-header">
             <h1>
               <span className="text-primary">Forum</span>

@@ -71,6 +71,9 @@ button {
     flex-direction: column;
     align-items: center;
 }
+.empty-content {
+    width: 600px;
+}
 .home-header {
     padding-bottom: 20px;
 }
@@ -250,4 +253,15 @@ footer ul li {
 }
 .page-nonactive {
     color: var(--gray-light-color)
+}
+
+@media only screen and (max-width: 680px) {
+    .empty-content {
+        width: 550px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .empty-content {
+        width: -webkit-fill-available;
+    }
 }
