@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import ButtonCategory from '../components/ButtonCategory';
 import ThreadList from '../components/ThreadList';
+import { asyncPopulateThreadsAndUser } from '../states/shared/action';
 
 function HomePage() {
+  const { threads } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(asyncPopulateThreadsAndUser());
+  }, [dispatch]);
+
+  const onLike = (id) => {
+    alert(id);
+  };
+
+  const onUnLike = (id) => {
+    alert(id);
+  };
+
   return (
     <section className="home-page">
       <div className="home-overlay">
@@ -18,7 +36,7 @@ function HomePage() {
           <div>
             <ButtonCategory>Makan</ButtonCategory>
           </div>
-          <ThreadList />
+          <ThreadList threads={threads} onLike={onLike} onUnLike={onUnLike} />
         </div>
       </div>
     </section>
