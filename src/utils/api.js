@@ -125,6 +125,27 @@ const api = (() => {
     return vote;
   };
 
+  const toggleUnLikeThread = async (threadId) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/down-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { vote } } = responseJson;
+
+    return vote;
+  };
+
   const toggleNeutralThread = async (threadId) => {
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/neutral-vote`, {
       method: 'POST',
@@ -154,6 +175,7 @@ const api = (() => {
     getAllThreads,
     getAllUsers,
     toggleLikeThread,
+    toggleUnLikeThread,
     toggleNeutralThread,
   };
 })();
