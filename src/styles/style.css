@@ -35,6 +35,7 @@ button {
 .home-page {
     /* background: url(https://images.pexels.com/photos/1776267/pexels-photo-1776267.jpeg?auto=compress&cs=tinysrgb&w=1600); */
     background: url(https://images.pexels.com/photos/3876407/pexels-photo-3876407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    padding-bottom: 50px;
 }
 
 .login-page, .register-page, .home-page {
