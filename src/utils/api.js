@@ -72,12 +72,34 @@ const api = (() => {
     return user;
   };
 
+  const getAllThreads = async () => {
+    const response = await fetch(`${BASE_URL}/threads`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { threads } } = responseJson;
+
+    return threads;
+  };
+
   return {
     putAccessToken,
     getAccessToken,
     register,
     login,
     getOwnProfile,
+    getAllThreads,
   };
 })();
 
