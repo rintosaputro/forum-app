@@ -22,5 +22,6 @@ const asyncReceiveThreads = () => async (dispatch) => {
 
 export {
   ActionType,
+  receiveThreadsActionCreator,
   asyncReceiveThreads,
 };
