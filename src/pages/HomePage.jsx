@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import ButtonCategory from '../components/ButtonCategory';
 import ThreadList from '../components/ThreadList';
 import { asyncPopulateThreadsAndUser } from '../states/shared/action';
 import { asyncToggleLikeThread, asyncToggleNeutralThread, asyncToggleUnLikeThread } from '../states/threads/action';
+import CategoryList from '../components/CategoryList';
 
 function HomePage() {
+  const [categories, setCategories] = useState([]);
+  const [keyCategory, setKeyCategory] = useState('');
+
   const { threads } = useSelector((state) => state);
 
   const dispatch = useDispatch();
@@ -13,6 +16,12 @@ function HomePage() {
   useEffect(() => {
     dispatch(asyncPopulateThreadsAndUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (threads.length !== 0) {
+      setCategories(threads.map((thread) => thread.category));
+    }
+  }, [threads]);
 
   const onLike = ({ id, isActive }) => {
     if (isActive) {
@@ -28,6 +37,13 @@ function HomePage() {
     return dispatch(asyncToggleUnLikeThread(id));
   };
 
+  const onCategory = ({ category, isActive }) => {
+    if (isActive) {
+      return setKeyCategory('');
+    }
+    return setKeyCategory(category);
+  };
+
   return (
     <section className="home-page">
       <div className="home-overlay">
@@ -40,10 +56,14 @@ function HomePage() {
             </h1>
           </header>
           <h5>Popular Category</h5>
-          <div>
-            <ButtonCategory>Makan</ButtonCategory>
-          </div>
-          <ThreadList threads={threads} onLike={onLike} onUnLike={onUnLike} />
+          <CategoryList categories={categories} onCategory={onCategory} />
+          <ThreadList
+            threads={keyCategory
+              ? threads?.filter((thread) => thread.category === keyCategory)
+              : threads}
+            onLike={onLike}
+            onUnLike={onUnLike}
+          />
         </div>
       </div>
     </section>
