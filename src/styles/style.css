@@ -25,6 +25,7 @@ ul {
 button {
     border: unset;
     background: unset;
+    cursor: pointer;
 }
 .login-page {
     background: url(https://images.pexels.com/photos/3895303/pexels-photo-3895303.jpeg?auto=compress&cs=tinysrgb&w=1600);
