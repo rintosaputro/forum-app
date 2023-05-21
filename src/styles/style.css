@@ -261,6 +261,12 @@ footer ul li {
 .page-nonactive {
     color: var(--gray-light-color)
 }
+.loading-bar {
+    position: sticky;
+    top: 0;
+    background-color: cyan;
+    height: 1.7px;
+}
 
 @media only screen and (max-width: 680px) {
     .empty-content {

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import LoadingBar from 'react-redux-loading-bar';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import HomePage from './pages/HomePage';
@@ -28,21 +29,27 @@ function App() {
   }
   if (!authUser) {
     return (
-      <div className="App">
-        <Routes>
-          <Route path="*" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      </div>
+      <>
+        <LoadingBar className="loading-bar" />
+        <div className="App">
+          <Routes>
+            <Route path="*" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+          </Routes>
+        </div>
+      </>
     );
   }
   return (
-    <div className="App">
-      <Routes>
-        <Route path="*" element={<HomePage />} />
-      </Routes>
-      <Footer onSignOut={onSignout} />
-    </div>
+    <>
+      <LoadingBar className="loading-bar" />
+      <div className="App">
+        <Routes>
+          <Route path="*" element={<HomePage />} />
+        </Routes>
+        <Footer onSignOut={onSignout} />
+      </div>
+    </>
   );
 }
 
