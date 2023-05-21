@@ -21,6 +21,11 @@ function HomePage() {
     if (threads.length !== 0) {
       setCategories(threads.map((thread) => thread.category));
     }
+
+    return () => {
+      setCategories([]);
+      setKeyCategory('');
+    };
   }, [threads]);
 
   const onLike = ({ id, isActive }) => {
