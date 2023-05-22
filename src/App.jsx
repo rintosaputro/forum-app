@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage';
 import Footer from './components/Footer';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import { asyncPreloadProcess } from './states/preload/action';
+import DetailPage from './pages/DetailPage';
 
 function App() {
   const { authUser = null, isPreload = false } = useSelector((state) => state);
@@ -46,6 +47,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="*" element={<HomePage />} />
+          <Route path="/threads/:id" element={<DetailPage />} />
         </Routes>
         <Footer onSignOut={onSignout} />
       </div>

@@ -16,7 +16,7 @@ function CardThread({
 
   const navigate = useNavigate();
 
-  const onThread = () => navigate(`/thread/${id}`);
+  const onThread = () => navigate(`/threads/${id}`);
 
   const onThreadPress = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
