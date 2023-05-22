@@ -27,18 +27,22 @@ button {
     background: unset;
     cursor: pointer;
 }
+a {
+    text-decoration: none;
+    color: unset;
+}
 .login-page {
     background: url(https://images.pexels.com/photos/3895303/pexels-photo-3895303.jpeg?auto=compress&cs=tinysrgb&w=1600);
 }
 .register-page {
     background: url(https://images.pexels.com/photos/289367/pexels-photo-289367.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
-.home-page {
+.home-page, .detail-page {
     /* background: url(https://images.pexels.com/photos/1776267/pexels-photo-1776267.jpeg?auto=compress&cs=tinysrgb&w=1600); */
     background: url(https://images.pexels.com/photos/3876407/pexels-photo-3876407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
 
-.login-page, .register-page, .home-page {
+.login-page, .register-page, .home-page, .detail-page {
     background-position: bottom;
     background-size: cover;
     background-attachment: fixed;
@@ -59,9 +63,8 @@ button {
     padding: 40px 20px;
     margin: auto;
 }
-.home-overlay {
+.home-overlay, .detail-overlay {
     background: rgb(4 8 41 / 17%);
-    border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6.7px);
     -webkit-backdrop-filter: blur(6.7px);
@@ -77,6 +80,7 @@ button {
 }
 .home-header {
     padding-bottom: 20px;
+    font-size: 21px;
 }
 
 .login-input, .register-input {
@@ -186,10 +190,20 @@ button {
     gap: 8px;
     align-items: flex-end;
 }
+.header-detail {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
 .avatar-card-thread {
     width: 20px;
-    height: auto;
+    height: 20px;
     border-radius: 20px;
+}
+.avatar-detail-thread {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
 }
 .title {
     padding-top: 5px;
@@ -266,6 +280,13 @@ footer ul li {
     top: 0;
     background-color: cyan;
     height: 1.7px;
+}
+.title-detail {
+    margin-top: 20px;
+    font-size: 18px;
+}
+.description-detail {
+    font-size: 14px;
 }
 
 @media only screen and (max-width: 680px) {

@@ -4,6 +4,7 @@ import ThreadList from '../components/ThreadList';
 import { asyncPopulateThreadsAndUser } from '../states/shared/action';
 import { asyncToggleLikeThread, asyncToggleNeutralThread, asyncToggleUnLikeThread } from '../states/threads/action';
 import CategoryList from '../components/CategoryList';
+import Header from '../components/Header';
 
 function HomePage() {
   const [categories, setCategories] = useState([]);
@@ -53,14 +54,8 @@ function HomePage() {
     <section className="home-page">
       <div className="home-overlay">
         <div className={threads.length === 0 ? 'empty-content' : ''}>
-          <header className="home-header">
-            <h1>
-              <span className="text-primary">Forum</span>
-              {' '}
-              App
-            </h1>
-          </header>
-          <h5>Popular Category</h5>
+          <Header />
+          {categories.length > 0 && <h5>Popular Category</h5>}
           <CategoryList categories={categories} onCategory={onCategory} />
           <ThreadList
             threads={keyCategory
