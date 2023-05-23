@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ReplyThreadInput({ onReply }) {
+function CommentThreadInput({ onReply }) {
   const handleReply = () => {
     const reply = document.querySelector('#replyInput').textContent;
     onReply(reply);
@@ -16,8 +16,8 @@ function ReplyThreadInput({ onReply }) {
   );
 }
 
-ReplyThreadInput.propTypes = {
+CommentThreadInput.propTypes = {
   onReply: PropTypes.func.isRequired,
 };
 
-export default ReplyThreadInput;
+export default CommentThreadInput;

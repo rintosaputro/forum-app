@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from '../components/Header';
 import ThreadDetail from '../components/ThreadDetail';
-import ReplyThreadInput from '../components/ReplyThreadInput';
-import RepliesList from '../components/RepliesList';
+import CommentThreadInput from '../components/CommentThreadInput';
+import CommentsList from '../components/CommentsList';
 
 function DetailPage() {
   const empty = 0;
@@ -17,8 +17,8 @@ function DetailPage() {
         <div className={empty === 0 ? 'empty-content' : ''}>
           <Header />
           <ThreadDetail />
-          <ReplyThreadInput onReply={onReply} />
-          <RepliesList />
+          <CommentThreadInput onReply={onReply} />
+          <CommentsList />
         </div>
       </div>
     </section>

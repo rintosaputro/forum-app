@@ -4,7 +4,7 @@ import { postDateFormat } from '../utils';
 import ThumbsUp from './ThumbsUp';
 import ThumbsDown from './ThumbsDown';
 
-function CardReply() {
+function CardComment() {
   return (
     <div className="card-reply">
       <div className="user-replier">
@@ -31,4 +31,4 @@ function CardReply() {
   );
 }
 
-export default CardReply;
+export default CardComment;

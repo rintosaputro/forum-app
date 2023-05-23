@@ -1,15 +1,15 @@
 import React from 'react';
-import CardReply from './CardReply';
+import CardComment from './CardComment';
 
-function RepliesList() {
+function CommentsList() {
   return (
     <>
       <h3 className="title-replies">Comments</h3>
       <div className="reply-list">
-        <CardReply />
+        <CardComment />
       </div>
     </>
   );
 }
 
-export default RepliesList;
+export default CommentsList;
