@@ -320,6 +320,11 @@ footer ul li {
     background-color: var(--primary);
     color: var(--gray-light-color);
 }
+.card-reply {
+    border-bottom: 1px solid var(--primary);
+    padding-bottom: 10px;
+    margin-bottom: 28px;
+}
 .title-replies {
     font-size: 16px;
     margin-top: 30px;

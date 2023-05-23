@@ -1,42 +1,69 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { postDateFormat } from '../utils';
 import Badge from './Badge';
 import ThumbsUp from './ThumbsUp';
 import ThumbsDown from './ThumbsDown';
 
-function ThreadDetail() {
+function ThreadDetail({
+  id, title, body, category, createdAt, owner, upVotedBy, downVoteBy, onLike, onUnLike,
+}) {
+  const { authUser } = useSelector((state) => state);
+
   return (
     <div className="thread-detail">
       <div className="header-detail">
-        <img src="https://images.pexels.com/photos/16791418/pexels-photo-16791418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar" className="avatar-card-thread" />
+        <img src={owner?.avatar} alt="avatar" className="avatar-card-thread" />
         <h2 className="name-thread">
-          apa
+          {owner?.name}
         </h2>
-        <span className="time-thread">{postDateFormat(new Date())}</span>
+        <span className="time-thread">{postDateFormat(createdAt)}</span>
       </div>
-      <h3 className="title-detail m-title">Rinto</h3>
+      <h3 className="title-detail m-title">{title}</h3>
       <div className="description-detail">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam magni
-        reiciendis iste ipsum maxime temporibus ullam rerum veritatis.
-        Libero esse fugit eius modi repellat quis corrupti rem quaerat perspiciatis tenetur?
+        {body}
       </div>
       <div className="badge-detail">
-        <Badge size="big">#Category</Badge>
+        <Badge size="big">{`#${category}`}</Badge>
       </div>
       <div className="thumbs-container">
         <ThumbsUp
-          totalThumbs={2}
-          isActive
-          onLike={() => null}
+          totalThumbs={upVotedBy?.length}
+          isActive={upVotedBy.includes(authUser.id)}
+          onLike={() => onLike(id)}
         />
         <ThumbsDown
-          totalThumbs={2}
-          isActive
-          onUnLike={() => null}
+          totalThumbs={downVoteBy?.length}
+          isActive={downVoteBy.includes(authUser.id)}
+          onUnLike={() => onUnLike(id)}
         />
       </div>
     </div>
   );
 }
+
+const ownerShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
+
+const threadItemShape = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  owner: PropTypes.shape(ownerShape).isRequired,
+  upVotedBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVoteBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+ThreadDetail.propTypes = {
+  ...threadItemShape,
+  onLike: PropTypes.func.isRequired,
+  onUnLike: PropTypes.func.isRequired,
+};
 
 export default ThreadDetail;
