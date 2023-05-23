@@ -11,6 +11,11 @@ function ThreadDetail({
 }) {
   const { authUser } = useSelector((state) => state);
 
+  const onLikeThread = () => {
+    const isActive = upVotesBy.includes(authUser.id);
+    onLike({ id, isActive });
+  };
+
   return (
     <div className="thread-detail">
       <div className="header-detail">
@@ -31,7 +36,7 @@ function ThreadDetail({
         <ThumbsUp
           totalThumbs={upVotesBy?.length}
           isActive={upVotesBy?.includes(authUser.id)}
-          onLike={() => onLike(id)}
+          onLike={onLikeThread}
         />
         <ThumbsDown
           totalThumbs={downVotesBy?.length}

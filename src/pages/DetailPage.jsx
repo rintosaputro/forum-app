@@ -6,6 +6,7 @@ import ThreadDetail from '../components/ThreadDetail';
 import CommentThreadInput from '../components/CommentThreadInput';
 import CommentsList from '../components/CommentsList';
 import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
+import { asyncToggleLikeThread, asyncToggleNeutralThread, asyncToggleUnLikeThread } from '../states/threads/action';
 
 function DetailPage() {
   const { threadDetail } = useSelector((state) => state);
@@ -18,6 +19,20 @@ function DetailPage() {
     dispatch(asyncReceiveThreadDetail(threadId));
   }, [threadId, dispatch]);
 
+  const onLikeThread = ({ id, isActive }) => {
+    if (isActive) {
+      return dispatch(asyncToggleNeutralThread(id));
+    }
+    return dispatch(asyncToggleLikeThread(id));
+  };
+
+  const onUnLikeThread = ({ id, isActive }) => {
+    if (isActive) {
+      return dispatch(asyncToggleNeutralThread(id));
+    }
+    return dispatch(asyncToggleUnLikeThread(id));
+  };
+
   const onReply = (value) => {
     alert(value);
   };
@@ -29,7 +44,7 @@ function DetailPage() {
           <Header />
           {threadDetail && (
           <>
-            <ThreadDetail {...threadDetail} />
+            <ThreadDetail {...threadDetail} onLike={onLikeThread} onUnLike={onUnLikeThread} />
             <CommentThreadInput onReply={onReply} />
             <CommentsList />
           </>
