@@ -9,9 +9,6 @@ import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
 
 function DetailPage() {
   const { threadDetail } = useSelector((state) => state);
-  const {
-    id, title, body, category, createdAt, owner, upVotesBy, downVotesBy, comments,
-  } = threadDetail;
 
   const dispatch = useDispatch();
 
@@ -30,18 +27,13 @@ function DetailPage() {
       <div className="detail-overlay">
         <div className={!threadDetail ? 'empty-content' : ''}>
           <Header />
-          <ThreadDetail
-            id={id}
-            title={title}
-            body={body}
-            category={category}
-            createdAt={createdAt}
-            owner={owner}
-            upVotedBy={upVotesBy}
-            downVoteBy={downVotesBy}
-          />
-          <CommentThreadInput onReply={onReply} />
-          <CommentsList />
+          {threadDetail && (
+          <>
+            <ThreadDetail {...threadDetail} />
+            <CommentThreadInput onReply={onReply} />
+            <CommentsList />
+          </>
+          )}
         </div>
       </div>
     </section>

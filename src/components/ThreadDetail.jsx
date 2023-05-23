@@ -7,7 +7,7 @@ import ThumbsUp from './ThumbsUp';
 import ThumbsDown from './ThumbsDown';
 
 function ThreadDetail({
-  id, title, body, category, createdAt, owner, upVotedBy, downVoteBy, onLike, onUnLike,
+  id, title, body, category, createdAt, owner, upVotesBy, downVotesBy, onLike, onUnLike,
 }) {
   const { authUser } = useSelector((state) => state);
 
@@ -29,13 +29,13 @@ function ThreadDetail({
       </div>
       <div className="thumbs-container">
         <ThumbsUp
-          totalThumbs={upVotedBy?.length}
-          isActive={upVotedBy.includes(authUser.id)}
+          totalThumbs={upVotesBy?.length}
+          isActive={upVotesBy?.includes(authUser.id)}
           onLike={() => onLike(id)}
         />
         <ThumbsDown
-          totalThumbs={downVoteBy?.length}
-          isActive={downVoteBy.includes(authUser.id)}
+          totalThumbs={downVotesBy?.length}
+          isActive={downVotesBy?.includes(authUser.id)}
           onUnLike={() => onUnLike(id)}
         />
       </div>
@@ -56,8 +56,8 @@ const threadItemShape = {
   category: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,
   owner: PropTypes.shape(ownerShape).isRequired,
-  upVotedBy: PropTypes.arrayOf(PropTypes.string).isRequired,
-  downVoteBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 ThreadDetail.propTypes = {
