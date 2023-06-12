@@ -169,6 +169,9 @@ a {
 .badge-big {
     font-size: 11px;
 }
+.detail-overlay {
+    padding-bottom: 50px;
+}
 .badge-detail {
     margin-bottom: 10px;
 }

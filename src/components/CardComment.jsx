@@ -1,34 +1,57 @@
 import React from 'react';
 import parser from 'html-react-parser';
+import PropTypes from 'prop-types';
 import { postDateFormat } from '../utils';
 import ThumbsUp from './ThumbsUp';
 import ThumbsDown from './ThumbsDown';
 
-function CardComment() {
+function CardComment({
+  owner, createdAt, content, upVotesBy, downVotesBy,
+}) {
   return (
     <div className="card-reply">
       <div className="user-replier">
-        <img src="https://yt3.googleusercontent.com/-CFTJHU7fEWb7BYEb6Jh9gm1EpetvVGQqtof0Rbh-VQRIznYYKJxCaqv_9HeBcmJmIsp2vOO9JU=s900-c-k-c0x00ffffff-no-rj" className="avatar-replier" alt="avatar" />
-        <div className="name-replier">Rinto</div>
-        <div className="date-reply">{postDateFormat(new Date())}</div>
+        <img src={owner.avatar} className="avatar-replier" alt="avatar" />
+        <div className="name-replier">{owner.name}</div>
+        <div className="date-reply">{postDateFormat(new Date(createdAt))}</div>
       </div>
       <div className="description-thread">
-        {parser('oke')}
+        {parser(content)}
       </div>
       <div className="thumbs-list-reply">
         <ThumbsUp
-          totalThumbs={2}
-          isActive
+          totalThumbs={upVotesBy.length}
+          isActive={upVotesBy.length}
           onLike={() => null}
         />
         <ThumbsDown
-          totalThumbs={2}
-          isActive
+          totalThumbs={downVotesBy.length}
+          isActive={downVotesBy.length}
           onUnLike={() => null}
         />
       </div>
     </div>
   );
 }
+
+const ownerShape = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+};
+
+const cardCommentShape = {
+  id: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
+  upVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  downVotesBy: PropTypes.arrayOf(PropTypes.string).isRequired,
+  owner: PropTypes.shape(ownerShape).isRequired,
+};
+CardComment.propTypes = {
+  ...cardCommentShape,
+};
+
+export { cardCommentShape };
 
 export default CardComment;

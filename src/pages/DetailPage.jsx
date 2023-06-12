@@ -48,7 +48,7 @@ function DetailPage() {
           <>
             <ThreadDetail {...threadDetail} onLike={onLikeThread} onUnLike={onUnLikeThread} />
             <CommentThreadInput onReply={onReply} />
-            <CommentsList />
+            <CommentsList comments={threadDetail.comments} />
           </>
           )}
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import parse from 'html-react-parser';
 import { postDateFormat } from '../utils';
 import Badge from './Badge';
 import ThumbsUp from './ThumbsUp';
@@ -32,7 +33,7 @@ function ThreadDetail({
       </div>
       <h3 className="title-detail m-title">{title}</h3>
       <div className="description-detail">
-        {body}
+        {parse(body)}
       </div>
       <div className="badge-detail">
         <Badge size="big">{`#${category}`}</Badge>
