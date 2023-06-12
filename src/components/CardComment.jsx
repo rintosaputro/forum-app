@@ -1,13 +1,26 @@
 import React from 'react';
 import parser from 'html-react-parser';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { postDateFormat } from '../utils';
 import ThumbsUp from './ThumbsUp';
 import ThumbsDown from './ThumbsDown';
 
 function CardComment({
-  owner, createdAt, content, upVotesBy, downVotesBy,
+  id, owner, createdAt, content, upVotesBy, downVotesBy, onLike, onUnlike,
 }) {
+  const { authUser } = useSelector((state) => state);
+
+  const handleLike = () => {
+    const isActive = upVotesBy.includes(authUser.id);
+    onLike({ id, isActive });
+  };
+
+  const handleUnlike = () => {
+    const isActive = downVotesBy.includes(authUser.id);
+    onUnlike({ id, isActive });
+  };
+
   return (
     <div className="card-reply">
       <div className="user-replier">
@@ -21,13 +34,13 @@ function CardComment({
       <div className="thumbs-list-reply">
         <ThumbsUp
           totalThumbs={upVotesBy.length}
-          isActive={upVotesBy.length}
-          onLike={() => null}
+          isActive={!!upVotesBy.length}
+          onLike={handleLike}
         />
         <ThumbsDown
           totalThumbs={downVotesBy.length}
-          isActive={downVotesBy.length}
-          onUnLike={() => null}
+          isActive={!!downVotesBy.length}
+          onUnLike={handleUnlike}
         />
       </div>
     </div>
@@ -50,6 +63,8 @@ const cardCommentShape = {
 };
 CardComment.propTypes = {
   ...cardCommentShape,
+  onLike: PropTypes.func.isRequired,
+  onUnlike: PropTypes.func.isRequired,
 };
 
 export { cardCommentShape };

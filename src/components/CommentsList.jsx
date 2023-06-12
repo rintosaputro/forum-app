@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CardComment, { cardCommentShape } from './CardComment';
 
-function CommentsList({ comments }) {
+function CommentsList({ comments, onLike, onUnlike }) {
   return (
     <>
       <h3 className="title-replies">Comments</h3>
       <div className="reply-list">
         {comments.map((comment) => (
           <CardComment
-            owner={comment.owner}
-            createdAt={comment.createdAt}
-            content={comment.content}
-            upVotesBy={comment.upVotesBy}
-            downVotesBy={comment.downVotesBy}
+            key={comment.id}
+            onLike={onLike}
+            onUnlike={onUnlike}
+            {...comment}
           />
         ))}
       </div>
@@ -23,6 +22,8 @@ function CommentsList({ comments }) {
 
 CommentsList.propTypes = {
   comments: PropTypes.arrayOf(PropTypes.shape(cardCommentShape)).isRequired,
+  onLike: PropTypes.func.isRequired,
+  onUnlike: PropTypes.func.isRequired,
 };
 
 export default CommentsList;

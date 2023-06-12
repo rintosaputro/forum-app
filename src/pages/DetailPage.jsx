@@ -6,8 +6,9 @@ import ThreadDetail from '../components/ThreadDetail';
 import CommentThreadInput from '../components/CommentThreadInput';
 import CommentsList from '../components/CommentsList';
 import {
-  asyncReceiveThreadDetail, asyncToggleLikeThreadDetail,
-  asyncToggleNeutralThreadDetail, asyncToggleUnlikeThreadDetail,
+  asyncReceiveThreadDetail, asyncToggleLikeComment, asyncToggleLikeThreadDetail,
+  asyncToggleNeutralComment,
+  asyncToggleNeutralThreadDetail, asyncToggleUnlikeComment, asyncToggleUnlikeThreadDetail,
 } from '../states/threadDetail/action';
 
 function DetailPage() {
@@ -39,6 +40,20 @@ function DetailPage() {
     alert(value);
   };
 
+  const onLikeComment = ({ id, isActive }) => {
+    if (isActive) {
+      return dispatch(asyncToggleNeutralComment(id));
+    }
+    return dispatch(asyncToggleLikeComment(id));
+  };
+
+  const onUnlikeComment = ({ id, isActive }) => {
+    if (isActive) {
+      return dispatch(asyncToggleNeutralComment(id));
+    }
+    return dispatch(asyncToggleUnlikeComment(id));
+  };
+
   return (
     <section className="detail-page">
       <div className="detail-overlay">
@@ -48,7 +63,11 @@ function DetailPage() {
           <>
             <ThreadDetail {...threadDetail} onLike={onLikeThread} onUnLike={onUnLikeThread} />
             <CommentThreadInput onReply={onReply} />
-            <CommentsList comments={threadDetail.comments} />
+            <CommentsList
+              comments={threadDetail.comments}
+              onLike={onLikeComment}
+              onUnlike={onUnlikeComment}
+            />
           </>
           )}
         </div>
