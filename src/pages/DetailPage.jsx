@@ -5,8 +5,10 @@ import Header from '../components/Header';
 import ThreadDetail from '../components/ThreadDetail';
 import CommentThreadInput from '../components/CommentThreadInput';
 import CommentsList from '../components/CommentsList';
-import { asyncReceiveThreadDetail } from '../states/threadDetail/action';
-import { asyncToggleLikeThread, asyncToggleNeutralThread, asyncToggleUnLikeThread } from '../states/threads/action';
+import {
+  asyncReceiveThreadDetail, asyncToggleLikeThreadDetail,
+  asyncToggleNeutralThreadDetail, asyncToggleUnlikeThreadDetail,
+} from '../states/threadDetail/action';
 
 function DetailPage() {
   const { threadDetail } = useSelector((state) => state);
@@ -19,18 +21,18 @@ function DetailPage() {
     dispatch(asyncReceiveThreadDetail(threadId));
   }, [threadId, dispatch]);
 
-  const onLikeThread = ({ id, isActive }) => {
+  const onLikeThread = (isActive) => {
     if (isActive) {
-      return dispatch(asyncToggleNeutralThread(id));
+      return dispatch(asyncToggleNeutralThreadDetail());
     }
-    return dispatch(asyncToggleLikeThread(id));
+    return dispatch(asyncToggleLikeThreadDetail());
   };
 
-  const onUnLikeThread = ({ id, isActive }) => {
+  const onUnLikeThread = (isActive) => {
     if (isActive) {
-      return dispatch(asyncToggleNeutralThread(id));
+      return dispatch(asyncToggleNeutralThreadDetail());
     }
-    return dispatch(asyncToggleUnLikeThread(id));
+    return dispatch(asyncToggleUnlikeThreadDetail());
   };
 
   const onReply = (value) => {

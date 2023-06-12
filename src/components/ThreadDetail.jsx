@@ -13,7 +13,12 @@ function ThreadDetail({
 
   const onLikeThread = () => {
     const isActive = upVotesBy.includes(authUser.id);
-    onLike({ id, isActive });
+    onLike(isActive);
+  };
+
+  const onUnlikeThread = () => {
+    const isActive = downVotesBy.includes(authUser.id);
+    onUnLike(isActive);
   };
 
   return (
@@ -41,7 +46,7 @@ function ThreadDetail({
         <ThumbsDown
           totalThumbs={downVotesBy?.length}
           isActive={downVotesBy?.includes(authUser.id)}
-          onUnLike={() => onUnLike(id)}
+          onUnLike={onUnlikeThread}
         />
       </div>
     </div>
