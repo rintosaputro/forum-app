@@ -25,6 +25,38 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
         downVotesBy:
           threadDetail.downVotesBy.filter((downVote) => downVote !== action.payload.userId),
       };
+    case ActionType.CREATE_COMMENT:
+      return {
+        ...threadDetail,
+        comments: [...threadDetail.comments, action.payload.comment],
+      };
+    case ActionType.TOGGLE_LIKE_COMMENT:
+      return {
+        ...threadDetail,
+        comments: threadDetail.comments.map((comment) => ({
+          ...comment,
+          upVotesBy: comment.upVotesBy.concat([action.payload.userId]),
+          downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
+        })),
+      };
+    case ActionType.TOGGLE_UNLIKE_COMMENT:
+      return {
+        ...threadDetail,
+        comments: threadDetail.comments.map((comment) => ({
+          ...comment,
+          upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
+          downVotesBy: comment.downVotesBy.concat([action.payload.userId]),
+        })),
+      };
+    case ActionType.TOGGLE_NEUTRAL_COMMENT:
+      return {
+        ...threadDetail,
+        comments: threadDetail.comments.map((comment) => ({
+          ...comment,
+          upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
+          downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
+        })),
+      };
     default:
       return threadDetail;
   }

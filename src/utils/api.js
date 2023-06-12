@@ -182,6 +182,89 @@ const api = (() => {
     return detailThread;
   };
 
+  const createComment = async ({ threadId, content }) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments`, {
+      method: 'POST',
+      body: JSON.stringify({
+        content,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { comment } } = responseJson;
+    return comment;
+  };
+
+  const toggleLikeComment = async ({ threadId, commentId }) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments/${commentId}/up-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { vote } } = responseJson;
+
+    return vote;
+  };
+
+  const toggleUnlikeComment = async ({ threadId, commentId }) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments/${commentId}/down-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { vote } } = responseJson;
+
+    return vote;
+  };
+
+  const toggleNeutralComment = async ({ threadId, commentId }) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/comments/${commentId}/neutral-vote`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { vote } } = responseJson;
+
+    return vote;
+  };
+
   return {
     putAccessToken,
     getAccessToken,
@@ -194,6 +277,10 @@ const api = (() => {
     toggleUnLikeThread,
     toggleNeutralThread,
     getThreadDetail,
+    createComment,
+    toggleLikeComment,
+    toggleUnlikeComment,
+    toggleNeutralComment,
   };
 })();
 
