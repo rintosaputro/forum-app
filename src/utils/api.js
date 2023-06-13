@@ -293,7 +293,7 @@ const api = (() => {
   };
 
   const getLeaderboards = async () => {
-    const response = fetch(`${BASE_URL}/leaderboards`);
+    const response = await fetch(`${BASE_URL}/leaderboards`);
 
     const responseJson = await response.json();
 
