@@ -40,6 +40,7 @@ function Footer({ onSignOut }) {
   const handleClickMenu = (route) => {
     if (route === '/logout') {
       onSignOut();
+      navigate('/');
     } else {
       navigate(route);
     }
