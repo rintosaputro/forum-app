@@ -41,8 +41,11 @@ a {
     /* background: url(https://images.pexels.com/photos/1776267/pexels-photo-1776267.jpeg?auto=compress&cs=tinysrgb&w=1600); */
     background: url(https://images.pexels.com/photos/3876407/pexels-photo-3876407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
 }
+.leaderboards-page {
+    background-image: url(https://images.pexels.com/photos/1933560/pexels-photo-1933560.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+}
 
-.login-page, .register-page, .home-page, .detail-page, .create-page {
+.login-page, .register-page, .home-page, .detail-page, .create-page, .leaderboards-page {
     background-position: bottom;
     background-size: cover;
     background-attachment: fixed;
@@ -63,7 +66,7 @@ a {
     padding: 40px 20px;
     margin: auto;
 }
-.home-overlay, .detail-overlay {
+.home-overlay, .detail-overlay, .leaderboards-overlay {
     background: rgb(4 8 41 / 17%);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(6.7px);
@@ -215,7 +218,7 @@ input {
     gap: 8px;
     align-items: center;
 }
-.avatar-card-thread {
+.avatar-card-thread, .avatar-leaderboards {
     width: 20px;
     height: 20px;
     border-radius: 20px;
@@ -275,7 +278,52 @@ input {
     max-width: 600px;
     flex-wrap: wrap;
 }
-legend {
+
+.leaderboards-container {
+    width: 100%;
+    max-width: 600px;
+}
+.list-leaderboards {
+    margin-bottom: 60px;
+}
+.legend-leaderboards {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 10px;
+}
+.legend-leaderboards h3, .legend-leaderboards span {
+    font-size: 13px;
+    font-weight: bold;
+}
+.card-leaderboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(14 74 84 / 60%);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 25px;
+}
+.user-leaderboard {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+.avatar-leaderboards {
+    object-fit: cover;
+}
+.username-leaderboard, .score-leaderboard {
+    font-size: 12px;
+    font-weight: 300;
+}
+.score-leaderboard {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+legend, .header-leaderboards {
     font-size: large;
     font-weight: bold;
     margin: 20px 0;
