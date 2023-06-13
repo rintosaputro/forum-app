@@ -58,7 +58,7 @@ function DetailPage() {
   return (
     <section className="detail-page">
       <div className="detail-overlay">
-        <div className={!threadDetail ? 'empty-content' : ''}>
+        <div className={!threadDetail ? 'empty-content' : 'detail-container'}>
           <Header />
           {threadDetail && (
           <>
