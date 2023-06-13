@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 function CommentThreadInput({ onReply }) {
   const handleReply = () => {
-    const reply = document.querySelector('#replyInput').textContent;
-    onReply(reply);
+    const reply = document.querySelector('#replyInput');
+    onReply(reply.textContent);
+    reply.innerHTML = '';
   };
 
   return (

@@ -28,7 +28,7 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
     case ActionType.CREATE_COMMENT:
       return {
         ...threadDetail,
-        comments: [...threadDetail.comments, action.payload.comment],
+        comments: [action.payload.comment, ...threadDetail.comments],
       };
     case ActionType.TOGGLE_LIKE_COMMENT:
       return {

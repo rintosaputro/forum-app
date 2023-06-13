@@ -6,6 +6,7 @@ import ThreadDetail from '../components/ThreadDetail';
 import CommentThreadInput from '../components/CommentThreadInput';
 import CommentsList from '../components/CommentsList';
 import {
+  asyncCreateComment,
   asyncReceiveThreadDetail, asyncToggleLikeComment, asyncToggleLikeThreadDetail,
   asyncToggleNeutralComment,
   asyncToggleNeutralThreadDetail, asyncToggleUnlikeComment, asyncToggleUnlikeThreadDetail,
@@ -37,7 +38,7 @@ function DetailPage() {
   };
 
   const onReply = (value) => {
-    alert(value);
+    dispatch(asyncCreateComment(value));
   };
 
   const onLikeComment = ({ id, isActive }) => {

@@ -120,14 +120,13 @@ const asyncToggleNeutralThreadDetail = () => async (dispatch, getState) => {
   dispatch(hideLoading());
 };
 
-const asyncCreateComment = ({ content }) => async (dispatch, getState) => {
+const asyncCreateComment = (content) => async (dispatch, getState) => {
   dispatch(showLoading());
   const { threadDetail } = getState();
 
   try {
     const comment = await api.createComment({ threadId: threadDetail.id, content });
     dispatch(createCommentActionCreator(comment));
-    asyncReceiveThreadDetail(threadDetail.id);
   } catch (err) {
     alert(err.message);
   }
