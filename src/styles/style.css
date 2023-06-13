@@ -166,7 +166,7 @@ input {
 .text-secondary {
     color: var(--secondary);
 }
-.badge {
+.badge, .total-comments {
     color: var(--primary);
     width: fit-content;
     border-radius: 3px;
@@ -261,6 +261,13 @@ input {
 .total-thumbs {
     font-size: 12px;
     padding-left: 2px;
+}
+.total-comments {
+    color: var(--gray-light-color);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
 }
 .category-list {
     display: flex;

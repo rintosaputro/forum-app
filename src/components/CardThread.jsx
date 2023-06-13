@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { useSelector } from 'react-redux';
+import { BiCommentDetail } from 'react-icons/bi';
 import Badge from './Badge';
 import ThumbsDown from './ThumbsDown';
 import ThumbsUp from './ThumbsUp';
@@ -63,6 +64,10 @@ function CardThread({
           isActive={downVotesBy.includes(authUser.id)}
           onUnLike={handleUnLike}
         />
+      </div>
+      <div className="total-comments">
+        <BiCommentDetail />
+        {`${totalComments} ${totalComments > 1 ? 'comments' : 'comment'}`}
       </div>
     </div>
   );
