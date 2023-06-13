@@ -104,6 +104,30 @@ const api = (() => {
     return users;
   };
 
+  const createThread = async ({ title, body, category }) => {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title, body, category,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { thread } } = responseJson;
+
+    return thread;
+  };
+
   const toggleLikeThread = async (threadId) => {
     const response = await _fetchWithAuth(`${BASE_URL}/threads/${threadId}/up-vote`, {
       method: 'POST',
@@ -276,6 +300,7 @@ const api = (() => {
     getOwnProfile,
     getAllThreads,
     getAllUsers,
+    createThread,
     toggleLikeThread,
     toggleUnLikeThread,
     toggleNeutralThread,

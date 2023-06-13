@@ -1,7 +1,9 @@
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
+  CREATE_THREAD: 'CREATE_THREAD',
   TOGGLE_LIKE_THREAD: 'TOGGLE_LIKE_THREAD',
   TOGGLE_UNLIKE_THREAD: 'TOGGLE_UNLIKE_THREAD',
   TOGGLE_NEUTRAL_THREAD: 'TOGGLE_NEUTRAL_THREAD',
@@ -11,6 +13,13 @@ const receiveThreadsActionCreator = (threads) => ({
   type: ActionType.RECEIVE_THREADS,
   payload: {
     threads,
+  },
+});
+
+const createThreadActionCreator = (thread) => ({
+  type: ActionType.CREATE_THREAD,
+  payload: {
+    thread,
   },
 });
 
@@ -42,6 +51,19 @@ const asyncReceiveThreads = () => async (dispatch) => {
   } catch (err) {
     alert(err.message);
   }
+};
+
+const asyncCreateThread = ({ title, body, category }) => async (dispatch) => {
+  dispatch(showLoading());
+
+  try {
+    const thread = await api.createThread({ title, body, category });
+    dispatch(createThreadActionCreator(thread));
+  } catch (err) {
+    alert(err.message);
+  }
+
+  dispatch(hideLoading());
 };
 
 const asyncToggleLikeThread = (threadId) => async (dispatch, getState) => {
@@ -80,7 +102,12 @@ const asyncToggleNeutralThread = (threadId) => async (dispatch, getState) => {
 export {
   ActionType,
   receiveThreadsActionCreator,
+  createThreadActionCreator,
+  toggleLikeThreadActionCreator,
+  toggleUnLikeThreadActionCreator,
+  toggleNeutralThreadActionCreator,
   asyncReceiveThreads,
+  asyncCreateThread,
   asyncToggleLikeThread,
   asyncToggleUnLikeThread,
   asyncToggleNeutralThread,
