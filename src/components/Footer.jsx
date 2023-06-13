@@ -1,6 +1,7 @@
 import React from 'react';
 import { AiFillHome, AiOutlineHome } from 'react-icons/ai';
 import { BsBarChartLineFill, BsBarChartLine } from 'react-icons/bs';
+import { IoCreateOutline } from 'react-icons/io5';
 import { MdOutlineLogout } from 'react-icons/md';
 import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -11,6 +12,12 @@ const listFooter = [
     nonActive: <AiOutlineHome size="20px" color="#fff" />,
     page: 'Home',
     route: '/',
+  },
+  {
+    active: <IoCreateOutline size="20px" color="#00c1c4" />,
+    nonActive: <IoCreateOutline size="20px" color="#fff" />,
+    page: 'Create',
+    route: '/create',
   },
   {
     active: <BsBarChartLineFill size="20px" color="#00c1c4" />,
