@@ -34,12 +34,12 @@ function CardComment({
       <div className="thumbs-list-reply">
         <ThumbsUp
           totalThumbs={upVotesBy.length}
-          isActive={!!upVotesBy.length}
+          isActive={upVotesBy.includes(authUser.id)}
           onLike={handleLike}
         />
         <ThumbsDown
           totalThumbs={downVotesBy.length}
-          isActive={!!downVotesBy.length}
+          isActive={downVotesBy.includes(authUser.id)}
           onUnLike={handleUnlike}
         />
       </div>

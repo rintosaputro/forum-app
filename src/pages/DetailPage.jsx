@@ -13,6 +13,14 @@ import {
 } from '../states/threadDetail/action';
 
 function DetailPage() {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   const { threadDetail } = useSelector((state) => state);
 
   const dispatch = useDispatch();
