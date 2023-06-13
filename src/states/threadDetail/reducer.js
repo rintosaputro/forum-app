@@ -33,29 +33,44 @@ const threadDetailReducer = (threadDetail = null, action = {}) => {
     case ActionType.TOGGLE_LIKE_COMMENT:
       return {
         ...threadDetail,
-        comments: threadDetail.comments.map((comment) => ({
-          ...comment,
-          upVotesBy: comment.upVotesBy.concat([action.payload.userId]),
-          downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
-        })),
+        comments: threadDetail.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: comment.upVotesBy.concat([action.payload.userId]),
+              downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
+            };
+          }
+          return comment;
+        }),
       };
     case ActionType.TOGGLE_UNLIKE_COMMENT:
       return {
         ...threadDetail,
-        comments: threadDetail.comments.map((comment) => ({
-          ...comment,
-          upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
-          downVotesBy: comment.downVotesBy.concat([action.payload.userId]),
-        })),
+        comments: threadDetail.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
+              downVotesBy: comment.downVotesBy.concat([action.payload.userId]),
+            };
+          }
+          return comment;
+        }),
       };
     case ActionType.TOGGLE_NEUTRAL_COMMENT:
       return {
         ...threadDetail,
-        comments: threadDetail.comments.map((comment) => ({
-          ...comment,
-          upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
-          downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
-        })),
+        comments: threadDetail.comments.map((comment) => {
+          if (comment.id === action.payload.commentId) {
+            return {
+              ...comment,
+              upVotesBy: comment.upVotesBy.filter((vote) => vote !== action.payload.userId),
+              downVotesBy: comment.downVotesBy.filter((vote) => vote !== action.payload.userId),
+            };
+          }
+          return comment;
+        }),
       };
     default:
       return threadDetail;
