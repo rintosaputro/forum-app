@@ -179,7 +179,7 @@ input {
 .detail-overlay {
     padding-bottom: 50px;
 }
-.detail-container {
+.detail-container, .home-container {
     max-width: 600px;
     width: 100%;
 }

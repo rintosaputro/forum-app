@@ -53,7 +53,7 @@ function HomePage() {
   return (
     <section className="home-page">
       <div className="home-overlay">
-        <div className={threads.length === 0 ? 'empty-content' : ''}>
+        <div className={threads.length === 0 ? 'empty-content' : 'home-container'}>
           <Header />
           {categories.length > 0 && <h5>Popular Category</h5>}
           <CategoryList categories={categories} onCategory={onCategory} />
