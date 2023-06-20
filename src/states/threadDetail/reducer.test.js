@@ -31,7 +31,7 @@ describe('threadDetailReducer function', () => {
   });
 
   it('should return the thread detail payload when given by RECEIVE_THREAD_DETAIL action', () => {
-    const initialState = [];
+    const initialState = null;
     const action = {
       type: 'RECEIVE_THREAD_DETAIL',
       payload: {
@@ -60,9 +60,7 @@ describe('threadDetailReducer function', () => {
               downVotesBy: [],
             },
           ],
-          upVotesBy: [
-            'user-3',
-          ],
+          upVotesBy: ['user-3'],
           downVotesBy: [],
         },
       },
@@ -74,7 +72,7 @@ describe('threadDetailReducer function', () => {
   });
 
   it('should return null when given by CLEAR_THREAD_DETAIL action', () => {
-    const initialState = [{
+    const initialState = {
       id: 'thread-1',
       title: 'Halo! ',
       body: 'Bagaimana kabarmu? Semoga baik-baik saja ya.Sekali lagi saya ucapkan selamat datang semuanya!',
@@ -86,11 +84,9 @@ describe('threadDetailReducer function', () => {
       },
       category: 'perkenalan',
       comments: [],
-      upVotesBy: [
-        'user-3',
-      ],
+      upVotesBy: ['user-3'],
       downVotesBy: [],
-    }];
+    };
     const action = {
       type: 'CLEAR_THREAD_DETAIL',
     };
@@ -98,5 +94,37 @@ describe('threadDetailReducer function', () => {
     const nextState = threadDetailReducer(initialState, action);
 
     expect(nextState).toBe(null);
+  });
+
+  it('should return the thread detail with the toggled like thread detail when given by TOGGLE_LIKE_THREAD_DETAIL action', () => {
+    const initialState = {
+      id: 'thread-1',
+      title: 'Halo! ',
+      body: 'Bagaimana kabarmu? Semoga baik-baik saja ya.Sekali lagi saya ucapkan selamat datang semuanya!',
+      createdAt: '2023-05-29T07:54:35.746Z',
+      owner: {
+        id: 'user-1',
+        name: 'Dicoding',
+        avatar: 'https://ui-avatars.com/api/?name=Dicoding&background=random',
+      },
+      category: 'perkenalan',
+      comments: [],
+      upVotesBy: ['user-3'],
+      downVotesBy: ['user-test'],
+    };
+    const action = {
+      type: 'TOGGLE_LIKE_THREAD_DETAIL',
+      payload: {
+        userId: 'user-test',
+      },
+    };
+
+    const nextState = threadDetailReducer(initialState, action);
+
+    expect(nextState).toEqual({
+      ...initialState,
+      upVotesBy: [...initialState.upVotesBy, action.payload.userId],
+      downVotesBy: [],
+    });
   });
 });
