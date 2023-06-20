@@ -97,7 +97,7 @@ describe('threadsReducer function', () => {
         ownerId: 'user-1',
         totalComments: 1,
         upVotesBy: ['user-1'],
-        downVotesBy: [],
+        downVotesBy: ['user-2'],
       },
     ];
     const action = {
@@ -114,6 +114,40 @@ describe('threadsReducer function', () => {
       {
         ...initialState[0],
         upVotesBy: [...initialState[0].upVotesBy, action.payload.userId],
+        downVotesBy: [],
+      },
+    ]);
+  });
+
+  it('should return the threads with the toggled unlike thread when given by TOGGLE_UNLIKE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Next js',
+        body: 'Server side rendering di dalam next js',
+        category: 'ssr',
+        createdAt: '2023-06-20T03:26:03.333Z',
+        ownerId: 'user-1',
+        totalComments: 1,
+        upVotesBy: ['user-1'],
+        downVotesBy: ['user-2'],
+      },
+    ];
+    const action = {
+      type: 'TOGGLE_UNLIKE_THREAD',
+      payload: {
+        threadId: 'thread-1',
+        userId: 'user-1',
+      },
+    };
+
+    const nextState = threadsReducer(initialState, action);
+
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [],
+        downVotesBy: [...initialState[0].downVotesBy, action.payload.userId],
       },
     ]);
   });
