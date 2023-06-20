@@ -28,6 +28,6 @@
         "react/require-default-props": "off",
         "react/button-has-type": "off",
         "react/jsx-props-no-spreading": "off",
-        "max-len": ["error", { "code": 120, "tabWidth": 4 }]
+        "max-len": ["error", { "code": 150, "tabWidth": 4 }]
     }
 }
