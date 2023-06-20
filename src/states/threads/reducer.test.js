@@ -23,4 +23,30 @@ describe('threadsReducer function', () => {
 
     expect(nextState).toEqual(initialState);
   });
+
+  it('should return the threads when given by RECEIVE_THREADS action', () => {
+    const initialState = [];
+    const action = {
+      type: 'RECEIVE_THREADS',
+      payload: {
+        threads: [
+          {
+            id: 'thread-2',
+            title: 'React Redux',
+            body: 'Belajar React redux',
+            category: 'redux',
+            createdAt: '2023-06-20T03:26:03.333Z',
+            ownerId: 'owner-id-2',
+            totalComments: 0,
+            upVotesBy: [],
+            downVotesBy: [],
+          },
+        ],
+      },
+    };
+
+    const nextState = threadsReducer(initialState, action);
+
+    expect(nextState).toEqual(action.payload.threads);
+  });
 });
