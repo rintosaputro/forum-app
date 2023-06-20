@@ -85,4 +85,36 @@ describe('threadsReducer function', () => {
 
     expect(nextState).toEqual([action.payload.thread, ...initialState]);
   });
+
+  it('should return the threads with the toggled like thread when given by TOGGLE_LIKE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Next js',
+        body: 'Server side rendering di dalam next js',
+        category: 'ssr',
+        createdAt: '2023-06-20T03:26:03.333Z',
+        ownerId: 'user-1',
+        totalComments: 1,
+        upVotesBy: ['user-1'],
+        downVotesBy: [],
+      },
+    ];
+    const action = {
+      type: 'TOGGLE_LIKE_THREAD',
+      payload: {
+        threadId: 'thread-1',
+        userId: 'user-2',
+      },
+    };
+
+    const nextState = threadsReducer(initialState, action);
+
+    expect(nextState).toEqual([
+      {
+        ...initialState[0],
+        upVotesBy: [...initialState[0].upVotesBy, action.payload.userId],
+      },
+    ]);
+  });
 });
