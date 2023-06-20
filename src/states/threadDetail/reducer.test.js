@@ -127,4 +127,36 @@ describe('threadDetailReducer function', () => {
       downVotesBy: [],
     });
   });
+
+  it('should return the thread detail with the toggled like thread detail when given by TOGGLE_UNLIKE_THREAD_DETAIL action', () => {
+    const initialState = {
+      id: 'thread-1',
+      title: 'Halo! ',
+      body: 'Bagaimana kabarmu? Semoga baik-baik saja ya.Sekali lagi saya ucapkan selamat datang semuanya!',
+      createdAt: '2023-05-29T07:54:35.746Z',
+      owner: {
+        id: 'user-1',
+        name: 'Dicoding',
+        avatar: 'https://ui-avatars.com/api/?name=Dicoding&background=random',
+      },
+      category: 'perkenalan',
+      comments: [],
+      upVotesBy: ['user-test'],
+      downVotesBy: ['user-3'],
+    };
+    const action = {
+      type: 'TOGGLE_UNLIKE_THREAD_DETAIL',
+      payload: {
+        userId: 'user-test',
+      },
+    };
+
+    const nextState = threadDetailReducer(initialState, action);
+
+    expect(nextState).toEqual({
+      ...initialState,
+      upVotesBy: [],
+      downVotesBy: [...initialState.downVotesBy, action.payload.userId],
+    });
+  });
 });
