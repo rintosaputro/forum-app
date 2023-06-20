@@ -49,4 +49,40 @@ describe('threadsReducer function', () => {
 
     expect(nextState).toEqual(action.payload.threads);
   });
+
+  it('should return the threads with the new thread when given by CREATE_THREAD action', () => {
+    const initialState = [
+      {
+        id: 'thread-1',
+        title: 'Next js',
+        body: 'Server side rendering di dalam next js',
+        category: 'ssr',
+        createdAt: '2023-06-20T03:26:03.333Z',
+        ownerId: 'owner-id-1',
+        totalComments: 1,
+        upVotesBy: ['voter-1'],
+        downVotesBy: [],
+      },
+    ];
+    const action = {
+      type: 'CREATE_THREAD',
+      payload: {
+        thread: {
+          id: 'thread-2',
+          title: 'React Redux',
+          body: 'Belajar React redux',
+          category: 'redux',
+          createdAt: '2023-06-20T03:26:03.333Z',
+          ownerId: 'owner-id-2',
+          totalComments: 0,
+          upVotesBy: [],
+          downVotesBy: [],
+        },
+      },
+    };
+
+    const nextState = threadsReducer(initialState, action);
+
+    expect(nextState).toEqual([action.payload.thread, ...initialState]);
+  });
 });
