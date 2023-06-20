@@ -159,4 +159,52 @@ describe('threadDetailReducer function', () => {
       downVotesBy: [...initialState.downVotesBy, action.payload.userId],
     });
   });
+
+  it('should return the thread detail with the toggled neutral thread detail when given by TOGGLE_NEUTRAL_THREAD_DETAIL action', () => {
+    const initialState = {
+      id: 'thread-1',
+      title: 'Halo! ',
+      body: 'Bagaimana kabarmu? Semoga baik-baik saja ya.Sekali lagi saya ucapkan selamat datang semuanya!',
+      createdAt: '2023-05-29T07:54:35.746Z',
+      owner: {
+        id: 'user-1',
+        name: 'Dicoding',
+        avatar: 'https://ui-avatars.com/api/?name=Dicoding&background=random',
+      },
+      category: 'perkenalan',
+      comments: [],
+      upVotesBy: ['user-test'],
+      downVotesBy: ['user-test2'],
+    };
+    // action for neutral like thread
+    const action = {
+      type: 'TOGGLE_NEUTRAL_THREAD_DETAIL',
+      payload: {
+        userId: 'user-test',
+      },
+    };
+    // action for neutral unlike thread
+    const action2 = {
+      type: 'TOGGLE_NEUTRAL_THREAD_DETAIL',
+      payload: {
+        userId: 'user-test2',
+      },
+    };
+
+    // next state for neutral like thread
+    const nextState = threadDetailReducer(initialState, action);
+    // expect for neutral like thread
+    expect(nextState).toEqual({
+      ...initialState,
+      upVotesBy: [],
+    });
+
+    // next state for neutral like thread
+    const nextState2 = threadDetailReducer(initialState, action2);
+    // expect for neutral like thread
+    expect(nextState2).toEqual({
+      ...initialState,
+      downVotesBy: [],
+    });
+  });
 });
