@@ -72,4 +72,31 @@ describe('threadDetailReducer function', () => {
 
     expect(nextState).toEqual(action.payload.threadDetail);
   });
+
+  it('should return null when given by CLEAR_THREAD_DETAIL action', () => {
+    const initialState = [{
+      id: 'thread-1',
+      title: 'Halo! ',
+      body: 'Bagaimana kabarmu? Semoga baik-baik saja ya.Sekali lagi saya ucapkan selamat datang semuanya!',
+      createdAt: '2023-05-29T07:54:35.746Z',
+      owner: {
+        id: 'user-1',
+        name: 'Dicoding',
+        avatar: 'https://ui-avatars.com/api/?name=Dicoding&background=random',
+      },
+      category: 'perkenalan',
+      comments: [],
+      upVotesBy: [
+        'user-3',
+      ],
+      downVotesBy: [],
+    }];
+    const action = {
+      type: 'CLEAR_THREAD_DETAIL',
+    };
+
+    const nextState = threadDetailReducer(initialState, action);
+
+    expect(nextState).toBe(null);
+  });
 });
