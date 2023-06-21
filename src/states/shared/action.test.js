@@ -75,4 +75,18 @@ describe('asyncPopulateThreadsAndUser thunk', () => {
     ]));
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
+
+  it('should dispatch action and call alert correctly when data fetching failed', async () => {
+    api.getAllUsers = () => Promise.reject(fakeErrorResponse);
+    api.getAllThreads = () => Promise.reject(fakeErrorResponse);
+
+    const dispatch = vi.fn();
+    window.alert = vi.fn();
+
+    await asyncPopulateThreadsAndUser()(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith(showLoading());
+    expect(dispatch).toHaveBeenCalledWith(showLoading());
+    expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
+  });
 });
