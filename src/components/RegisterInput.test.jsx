@@ -39,4 +39,12 @@ describe('RegisterInput component', () => {
     await userEvent.type(emailInput, 'emailtest');
     expect(emailInput).toHaveValue('emailtest');
   });
+
+  it('should handle password typing correctly', async () => {
+    render(<RegisterInput onRegister={() => {}} />);
+    const passwordInput = await screen.getByPlaceholderText('Password');
+
+    await userEvent.type(passwordInput, 'passwordtest');
+    expect(passwordInput).toHaveValue('passwordtest');
+  });
 });
