@@ -1,7 +1,7 @@
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
 import api from '../../utils/api';
 import { receiveThreadsActionCreator } from '../threads/action';
-import { receiveUsers } from '../users/action';
+import { receiveUsersActionCreator } from '../users/action';
 
 const asyncPopulateThreadsAndUser = () => async (dispatch) => {
   dispatch(showLoading());
@@ -9,7 +9,7 @@ const asyncPopulateThreadsAndUser = () => async (dispatch) => {
     const users = await api.getAllUsers();
     const threads = await api.getAllThreads();
 
-    dispatch(receiveUsers(users));
+    dispatch(receiveUsersActionCreator(users));
 
     const resultThreads = threads.map((thread) => {
       const owner = users.find((user) => user.id === thread.ownerId);
