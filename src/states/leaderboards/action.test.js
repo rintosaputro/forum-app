@@ -49,4 +49,17 @@ describe('asyncReceiveLeaderboards thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(receiveLeaderboardsActionCreator(fakeLeaderboardsResponse));
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
+
+  it('should dispatch action and call alert correctly when data fetching failed', async () => {
+    api.getLeaderboards = () => Promise.reject(fakeErrorResponse);
+
+    const dispatch = vi.fn();
+    window.alert = vi.fn();
+
+    await asyncReceiveLeaderboards()(dispatch);
+
+    expect(dispatch).toHaveBeenCalledWith(showLoading());
+    expect(dispatch).toHaveBeenCalledWith(hideLoading());
+    expect(window.alert).toHaveBeenCalledWith(fakeErrorResponse.message);
+  });
 });
