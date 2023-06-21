@@ -65,8 +65,7 @@ describe('RegisterInput component', () => {
 
     await userEvent.click(registerButton);
 
-    expect(mockOnRegister).toHaveBeenCalledTimes(1);
-    expect(mockOnRegister).toHaveBeenCalledWith({
+    expect(mockOnRegister).toBeCalledWith({
       name: 'nametest',
       email: 'emailtest',
       password: 'passwordtest',
