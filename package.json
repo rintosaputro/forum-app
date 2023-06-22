@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "vitest",
     "eject": "react-scripts eject",
-    "lint": "eslint . --ext .js,.jsx"
+    "lint": "eslint . --ext .js,.jsx",
+    "e2e": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -45,8 +46,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "cypress": "^12.15.0",
     "eslint": "^8.40.0",
     "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-cypress": "^2.13.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
