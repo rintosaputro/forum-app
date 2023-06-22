@@ -37,4 +37,17 @@ describe('CreateInput component', () => {
 
     expect(titleInput).toHaveValue('titletest');
   });
+
+  it('should handle body typing correctly', async () => {
+    render(
+      <MemoryRouter>
+        <CreateInput onPostThread={() => {}} />
+      </MemoryRouter>,
+    );
+    const bodyInput = await screen.getByRole('body-input');
+
+    await userEvent.type(bodyInput, 'bodyinputtest');
+
+    expect(bodyInput.textContent).toBe('bodyinputtest');
+  });
 });
