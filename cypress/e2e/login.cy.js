@@ -29,13 +29,23 @@ describe('Login spce', () => {
     });
   });
 
-  it('should display alert when password is empty', () => {
+  it('should display alert when email is not valid', () => {
     cy.get('input[placeholder="Email"]').type('emailtest');
 
     cy.get('button').contains(/^Login$/).click();
 
     cy.on('window:alert', (str) => {
       expect(str).to.equal('"email" must be a valid email');
+    });
+  });
+
+  it('should display alert when password is empty', () => {
+    cy.get('input[placeholder="Email"]').type('emailtest@mail.com');
+
+    cy.get('button').contains(/^Login$/).click();
+
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('"password" is not allowed to be empty');
     });
   });
 });
