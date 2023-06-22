@@ -38,6 +38,20 @@ describe('CreateInput component', () => {
     expect(titleInput).toHaveValue('titletest');
   });
 
+  it('should handle category typing correctly', async () => {
+    render(
+      <MemoryRouter>
+        <CreateInput onPostThread={() => {}} />
+      </MemoryRouter>,
+    );
+
+    const categoryInput = await screen.getByPlaceholderText('Category');
+
+    await userEvent.type(categoryInput, 'categorytest');
+
+    expect(categoryInput).toHaveValue('categorytest');
+  });
+
   it('should handle body typing correctly', async () => {
     render(
       <MemoryRouter>
