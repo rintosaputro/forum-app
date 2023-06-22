@@ -10,7 +10,7 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import {
-  afterEach, describe, expect, it,
+  afterEach, describe, expect, it, vi,
 } from 'vitest';
 import matchers from '@testing-library/jest-dom/matchers';
 import { cleanup, render, screen } from '@testing-library/react';
@@ -63,5 +63,33 @@ describe('CreateInput component', () => {
     await userEvent.type(bodyInput, 'bodyinputtest');
 
     expect(bodyInput.textContent).toBe('bodyinputtest');
+  });
+
+  it('should call onPostThread function when register button is clicked', async () => {
+    const mockOnPostThread = vi.fn();
+
+    render(
+      <MemoryRouter>
+        <CreateInput onPostThread={mockOnPostThread} />
+      </MemoryRouter>,
+    );
+
+    const titleInput = await screen.getByPlaceholderText('Title');
+    await userEvent.type(titleInput, 'titletest');
+
+    const categoryInput = await screen.getByPlaceholderText('Category');
+    await userEvent.type(categoryInput, 'categorytest');
+
+    const bodyInput = await screen.getByRole('body-input');
+    await userEvent.type(bodyInput, 'bodyinputtest');
+
+    const buttonPostThread = await screen.getByRole('button', { name: 'Post Thread' });
+    await userEvent.click(buttonPostThread);
+
+    expect(mockOnPostThread).toBeCalledWith({
+      title: 'titletest',
+      category: 'categorytest',
+      body: 'bodyinputtest',
+    });
   });
 });
