@@ -59,4 +59,15 @@ describe('Login spce', () => {
       expect(str).to.equal('email or password is wrong');
     });
   });
+
+  it('should display homepage when email and password are correct', () => {
+    cy.get('input[placeholder="Email"]').type('halo@mail.com');
+    cy.get('input[placeholder="Password"]').type('123456');
+
+    cy.get('button').contains(/^Login$/).click();
+
+    cy.get('span').contains('Forum').should('be.visible');
+    cy.get('h1').contains('App').should('be.visible');
+    cy.get('button').find('div.footer-page.page-active').contains('Home').should('be.visible');
+  });
 });
