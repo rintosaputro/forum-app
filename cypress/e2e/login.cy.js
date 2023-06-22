@@ -48,4 +48,15 @@ describe('Login spce', () => {
       expect(str).to.equal('"password" is not allowed to be empty');
     });
   });
+
+  it('should display alert when email and password are wrong', () => {
+    cy.get('input[placeholder="Email"]').type('emailtest@mail.com');
+    cy.get('input[placeholder="Password"]').type('passwordtest');
+
+    cy.get('button').contains(/^Login$/).click();
+
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('email or password is wrong');
+    });
+  });
 });
