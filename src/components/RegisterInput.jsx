@@ -9,6 +9,11 @@ function RegisterInput({ onRegister }) {
   const [email, handleEmail] = useInput('');
   const [password, handlePassword] = useInput('');
 
+  const handleRegister = (event) => {
+    event.preventDefault();
+    onRegister({ name, email, password });
+  };
+
   return (
     <form className="register-input">
       <TextField type="text" value={name} onChange={handleName} placeholder="Name" />
@@ -16,9 +21,7 @@ function RegisterInput({ onRegister }) {
       <TextField type="password" value={password} onChange={handlePassword} placeholder="Password" />
       <ButtonBase
         type="submit"
-        onClick={(event) => onRegister({
-          event, name, email, password,
-        })}
+        onClick={(event) => handleRegister(event)}
       >
         Register
       </ButtonBase>
