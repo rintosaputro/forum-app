@@ -2,6 +2,7 @@
  * - Login spec
  *   - should display login page correctly
  *   - should display alert when email is empty
+ *   - should display alert when email is not valid
  *   - should display alert when password is empty
  *   - should display alert when email and password are wrong
  *   - should display homepage when email and password are correct
@@ -20,11 +21,21 @@ describe('Login spce', () => {
     cy.get('a').contains('Register').should('be.visible');
   });
 
-  it('should display alert when email is empty', async () => {
+  it('should display alert when email is empty', () => {
     cy.get('button').contains(/^Login$/).click();
 
     cy.on('window:alert', (str) => {
       expect(str).to.equal('"email" is not allowed to be empty');
+    });
+  });
+
+  it('should display alert when password is empty', () => {
+    cy.get('input[placeholder="Email"]').type('emailtest');
+
+    cy.get('button').contains(/^Login$/).click();
+
+    cy.on('window:alert', (str) => {
+      expect(str).to.equal('"email" must be a valid email');
     });
   });
 });
