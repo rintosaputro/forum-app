@@ -7,10 +7,10 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "react-app"
+        "react-app",
+        "plugin:storybook/recommended"
     ],
-    "overrides": [
-    ],
+    "overrides": [],
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -30,16 +30,24 @@
         "react/require-default-props": "off",
         "react/button-has-type": "off",
         "react/jsx-props-no-spreading": "off",
-        "max-len": ["error", { "code": 150, "tabWidth": 4 }],
+        "max-len": [
+            "error",
+            {
+                "code": 150,
+                "tabWidth": 4
+            }
+        ],
         "import/no-extraneous-dependencies": [
             "error",
             {
-              "devDependencies": [
-                "**/*.stories.*",
-                "**/.storybook/**/*.*"
-              ],
-              "peerDependencies": true
+                "devDependencies": [
+                    "**/*.stories.*",
+                    "**/.storybook/**/*.*"
+                ],
+                "peerDependencies": true
             }
-        ]
+        ],
+        "storybook/story-exports": "off",
+        "react/jsx-filename-extension": "off"
     }
 }
