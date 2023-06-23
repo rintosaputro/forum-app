@@ -23,7 +23,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx",
     "e2e": "cypress run",
-    "ci:test": "vitest --no-watch && start-server-and-test start http-get://0.0.0.0:3000 e2e"
+    "ci:test": "vitest --no-watch && start-server-and-test start http-get://0.0.0.0:3000 e2e",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,9 +46,18 @@
     ]
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.23",
+    "@storybook/addon-interactions": "^7.0.23",
+    "@storybook/addon-links": "^7.0.23",
+    "@storybook/blocks": "^7.0.23",
+    "@storybook/preset-create-react-app": "^7.0.23",
+    "@storybook/react": "^7.0.23",
+    "@storybook/react-webpack5": "^7.0.23",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^12.15.0",
     "eslint": "^8.40.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -57,6 +68,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^22.1.0",
     "start-server-and-test": "^2.0.0",
-    "vitest": "^0.32.2"
+    "storybook": "^7.0.23",
+    "vitest": "^0.32.2",
+    "webpack": "^5.88.0"
   }
 }
