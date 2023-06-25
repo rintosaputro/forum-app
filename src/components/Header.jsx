@@ -7,7 +7,6 @@ function Header() {
       <Link to="/">
         <h1>
           <span className="text-primary">Forum</span>
-          {' '}
           App
         </h1>
       </Link>
