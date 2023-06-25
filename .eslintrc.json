@@ -37,16 +37,7 @@
                 "tabWidth": 4
             }
         ],
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": [
-                    "**/*.stories.*",
-                    "**/.storybook/**/*.*"
-                ],
-                "peerDependencies": true
-            }
-        ],
+        "import/no-extraneous-dependencies": "off",
         "storybook/story-exports": "off",
         "react/jsx-filename-extension": "off"
     }
